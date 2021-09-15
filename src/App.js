@@ -1,21 +1,23 @@
 import React from 'react';
 import SeasonDisplay from './components/SeasonDisplay.js';
 
-function App() {
-  // function to get current user location
-  window.navigator.geolocation.getCurrentPosition(
-    // success callback (first argument)
-    (position) => console.log(position),
-    // failure callback (second argument)
-    (err) => console.log(err)
-  )
+class App extends React.Component {
+  render() {
+    // function to get current user location
+    window.navigator.geolocation.getCurrentPosition(
+      // success callback (first argument)
+      (position) => console.log(position),
+      // failure callback (second argument)
+      (err) => console.log(err)
+    )
 
-  return (
-    <div>
-      Hi there!
-      <SeasonDisplay />
-    </div>
-  );
+    return (
+      <div>
+        Hi there!
+        <SeasonDisplay />
+      </div>
+    )
+  }
 }
 
 export default App;
