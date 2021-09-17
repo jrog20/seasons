@@ -5,7 +5,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      lat: null
+      lat: null,
+      error: ''
     };
 
     // function to get current user location
@@ -17,17 +18,20 @@ class App extends React.Component {
         });
       },
       // failure callback (second argument)
-      (err) => console.log(err)
-    )
+      err => {
+        this.setState({ error: err.message });
+      }
+    );
   }
 
   render() {
-    return (
-      <div>
-        Latitude: {this.state.lat}
-        <SeasonDisplay />
-      </div>
-    )
+    if (this.state.error && !this.state.lat) {
+      return <div>Error: {this.state.error}</div>
+    }
+    if (!this.state.error && this.state.lat) {
+      return <div>Latitude: {this.state.lat}</div>
+    }
+    return <div>Loading</div>
   }
 }
 
