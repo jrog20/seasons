@@ -18,15 +18,23 @@ class App extends React.Component {
     );
   }
 
-  render() {
+  renderContent() {
     if (this.state.error && !this.state.lat) {
       return <div>Error: {this.state.error}</div>
     }
     if (!this.state.error && this.state.lat) {
       return <SeasonDisplay lat={this.state.lat}/>
     }
-    return <div><Loader /></div>
+    return <div><Loader message="Please accept location request"/></div>
   }
+
+  render() {
+    return (
+      <div>
+        {this.renderContent()}
+      </div>
+    )
+  } 
 }
 
 export default App;
